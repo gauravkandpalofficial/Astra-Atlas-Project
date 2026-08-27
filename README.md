@@ -11,8 +11,6 @@ space-exploration website across four weekly frontend development tasks.
 - **Week 4 - Frontend Performance Optimization:** A performance-focused revision of the Astra Atlas space-exploration landing page from Week 3.
 
 
-A performance-focused revision of the Astra Atlas space-exploration landing page from Week 3.
-
 ## Run locally
 
 Open `index.html` in a current browser. No installation, server or external dependencies are required.
