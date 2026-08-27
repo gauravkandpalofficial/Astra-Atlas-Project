@@ -1,0 +1,25 @@
+/* Astra Atlas final site: Week 1 navigation, Week 2 Mission Explorer, Week 3 accessible feedback. */
+(() => {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('#nav-links');
+  menuToggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.innerHTML = `<span aria-hidden="true">☰</span> ${open ? 'Close' : 'Menu'}`;
+  });
+  function closeNav() { nav.classList.remove('open'); menuToggle.setAttribute('aria-expanded', 'false'); menuToggle.innerHTML = '<span aria-hidden="true">☰</span> Menu'; }
+  nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeNav(); });
+
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const panels = [...document.querySelectorAll('[role="tabpanel"]')];
+  function selectTab(tab) { tabs.forEach((item) => { const active = item === tab; item.classList.toggle('active', active); item.setAttribute('aria-selected', String(active)); item.tabIndex = active ? 0 : -1; }); panels.forEach((panel) => { const active = panel.id === tab.dataset.panel; panel.hidden = !active; panel.classList.toggle('active', active); }); }
+  tabs.forEach((tab, index) => { tab.addEventListener('click', () => selectTab(tab)); tab.addEventListener('keydown', (event) => { if (!['ArrowRight','ArrowLeft','ArrowDown','ArrowUp','Home','End'].includes(event.key)) return; event.preventDefault(); let target=index; if (event.key==='ArrowRight'||event.key==='ArrowDown') target=(index+1)%tabs.length; if (event.key==='ArrowLeft'||event.key==='ArrowUp') target=(index-1+tabs.length)%tabs.length; if (event.key==='Home') target=0; if (event.key==='End') target=tabs.length-1; tabs[target].focus(); selectTab(tabs[target]); }); });
+
+  const data = { lunar:{title:'Artemis Horizon',copy:'The Lunar Horizon team will investigate water-ice deposits and select safe, science-rich sites for future crews.',facts:[['Primary goal','Water ice mapping'],['Vehicle','Polar orbiter'],['Team','42 explorers']]},mars:{title:'Redline',copy:'Redline combines rover science with orbital observations to understand how Mars changed from a wetter world to the planet we see today.',facts:[['Primary goal','Ancient climate'],['Vehicle','Science rover'],['Team','58 explorers']]},deep:{title:'Farview',copy:'Farview observes infrared light from the earliest galaxies, helping scientists learn how stars and structure first formed.',facts:[['Primary goal','First galaxies'],['Vehicle','Infrared telescope'],['Team','36 explorers']]}};
+  const modal=document.querySelector('#mission-modal'), fallback=document.querySelector('#fallback-message'); let trigger=null;
+  function closeModal(){if(modal.open)modal.close();if(trigger)trigger.focus();}
+  document.querySelectorAll('.details-button').forEach((button)=>button.addEventListener('click',()=>{const mission=data[button.dataset.mission]; trigger=button; document.querySelector('#modal-title').textContent=mission.title;document.querySelector('#modal-copy').textContent=mission.copy;document.querySelector('#modal-facts').innerHTML=mission.facts.map(([a,b])=>`<div><b>${a}</b><span>${b}</span></div>`).join('');if(typeof modal.showModal==='function')modal.showModal();else{fallback.hidden=false;fallback.textContent=`${mission.title}: ${mission.copy}`;}}));
+  document.querySelectorAll('.modal-close,.modal-return').forEach((button)=>button.addEventListener('click',closeModal)); modal.addEventListener('click',(event)=>{if(event.target===modal)closeModal();});
+  const form=document.querySelector('#subscribe-form'),email=document.querySelector('#email'),status=document.querySelector('#form-status'); form.addEventListener('submit',(event)=>{event.preventDefault();if(!email.validity.valid){status.textContent='Please enter an email address in the correct format.';email.focus();return;}status.textContent='Thank you. Your fictional Astra Atlas updates are ready for launch.';form.reset();});
+})();
