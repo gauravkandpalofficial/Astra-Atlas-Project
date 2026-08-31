@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Astra Atlas Mission Control dashboard with mission statistics, filters, sorting and accessible data panels.">
+  <title>Astra Atlas | Mission Control Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to dashboard</a>
+
+  <header class="site-header">
+    <a class="brand" href="#main" aria-label="Astra Atlas Mission Control home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>ASTRA ATLAS</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="menu-icon" aria-hidden="true">☰</span>
+      <span class="sr-only">Open menu</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      <a href="#overview">Overview</a>
+      <a href="#missions">Missions</a>
+      <a href="#insights">Insights</a>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">MISSION CONTROL / LIVE DATASET</p>
+        <h1 id="page-title">Explore the missions<br><em>shaping tomorrow.</em></h1>
+        <p class="hero-copy">A lightweight mission dashboard built from a static JSON dataset, with responsive controls, accessible data views and fast client-side filtering.</p>
+      </div>
+      <div class="orbit-card" aria-label="Mission status summary">
+        <span class="orbit orbit-one" aria-hidden="true"></span>
+        <span class="orbit orbit-two" aria-hidden="true"></span>
+        <span class="planet" aria-hidden="true"></span>
+        <div class="orbit-label"><strong id="active-orbit-count">—</strong><span>active missions</span></div>
+      </div>
+    </section>
+
+    <section id="overview" class="dashboard-section" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / OVERVIEW</p>
+          <h2 id="overview-title">Mission telemetry</h2>
+        </div>
+        <p id="last-updated" class="muted">Loading dataset…</p>
+      </div>
+
+      <div class="stats-grid" aria-live="polite">
+        <article class="stat-card"><span>Total missions</span><strong id="total-missions">—</strong><small>in dataset</small></article>
+        <article class="stat-card"><span>Active missions</span><strong id="active-missions">—</strong><small>currently underway</small></article>
+        <article class="stat-card"><span>Completed</span><strong id="completed-missions">—</strong><small>successful missions</small></article>
+        <article class="stat-card"><span>Countries</span><strong id="country-count">—</strong><small>launch partners</small></article>
+      </div>
+    </section>
+
+    <section id="missions" class="dashboard-section" aria-labelledby="missions-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / MISSION LOG</p>
+          <h2 id="missions-title">Mission explorer</h2>
+        </div>
+        <p id="result-count" class="muted" aria-live="polite">Loading…</p>
+      </div>
+
+      <div class="controls" role="group" aria-label="Mission filters and sorting">
+        <label>
+          <span>Status</span>
+          <select id="status-filter">
+            <option value="all">All statuses</option>
+            <option value="Active">Active</option>
+            <option value="Completed">Completed</option>
+            <option value="Planned">Planned</option>
+          </select>
+        </label>
+        <label>
+          <span>Destination</span>
+          <select id="destination-filter">
+            <option value="all">All destinations</option>
+          </select>
+        </label>
+        <label class="search-field">
+          <span>Search missions</span>
+          <input id="search-input" type="search" placeholder="e.g. Artemis" autocomplete="off">
+        </label>
+        <label>
+          <span>Sort by</span>
+          <select id="sort-select">
+            <option value="date-desc">Latest launch</option>
+            <option value="date-asc">Oldest launch</option>
+            <option value="name-asc">Mission name A–Z</option>
+            <option value="duration-desc">Longest duration</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <caption class="sr-only">Space mission dataset</caption>
+          <thead>
+            <tr>
+              <th scope="col">Mission</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Status</th>
+              <th scope="col">Launch date</th>
+              <th scope="col">Duration</th>
+              <th scope="col">Agency</th>
+            </tr>
+          </thead>
+          <tbody id="mission-table-body">
+            <tr><td colspan="6" class="table-message">Loading mission data…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="insights" class="dashboard-section" aria-labelledby="insights-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">03 / INSIGHTS</p>
+          <h2 id="insights-title">Destination activity</h2>
+        </div>
+      </div>
+      <div class="insights-grid">
+        <article class="chart-card">
+          <h3>Missions by destination</h3>
+          <div id="destination-chart" class="bar-chart" role="img" aria-label="Bar chart showing mission counts by destination"></div>
+        </article>
+        <article class="info-card">
+          <p class="eyebrow">DATA NOTE</p>
+          <h3>Built without a chart library.</h3>
+          <p>The dashboard uses semantic HTML, CSS bars and native form controls. This keeps the application small and avoids loading a third-party visualization bundle for a simple static dataset.</p>
+          <p id="data-status" class="status-message" role="status" aria-live="polite">Preparing data…</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>ASTRA ATLAS / MISSION CONTROL</span>
+    <span>Week 5 Mini Web Application</span>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
