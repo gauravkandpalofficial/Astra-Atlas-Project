@@ -1,0 +1,17 @@
+{
+  "updated": "2026-08-31",
+  "missions": [
+    {"id":"AA-001","name":"Lunar Gateway","destination":"Moon","status":"Active","launchDate":"2026-03-18","durationDays":240,"agency":"Astra Atlas","country":"USA"},
+    {"id":"AA-002","name":"Mars Pathfinder II","destination":"Mars","status":"Planned","launchDate":"2027-07-22","durationDays":420,"agency":"Astra Atlas","country":"USA"},
+    {"id":"AA-003","name":"Europa Clipper","destination":"Jupiter","status":"Active","launchDate":"2025-10-14","durationDays":1900,"agency":"NASA","country":"USA"},
+    {"id":"AA-004","name":"Solar Sentinel","destination":"Sun","status":"Completed","launchDate":"2024-09-09","durationDays":365,"agency":"Helios Lab","country":"India"},
+    {"id":"AA-005","name":"Lunar Surveyor","destination":"Moon","status":"Completed","launchDate":"2025-02-12","durationDays":180,"agency":"ISRO","country":"India"},
+    {"id":"AA-006","name":"Titan Horizon","destination":"Saturn","status":"Planned","launchDate":"2028-11-03","durationDays":2500,"agency":"ESA","country":"France"},
+    {"id":"AA-007","name":"Mars Relay One","destination":"Mars","status":"Active","launchDate":"2026-05-30","durationDays":800,"agency":"JAXA","country":"Japan"},
+    {"id":"AA-008","name":"Deep Space Array","destination":"Jupiter","status":"Completed","launchDate":"2023-06-16","durationDays":900,"agency":"NASA","country":"USA"},
+    {"id":"AA-009","name":"Lunar Polar Lab","destination":"Moon","status":"Planned","launchDate":"2027-02-20","durationDays":300,"agency":"ISRO","country":"India"},
+    {"id":"AA-010","name":"Venus Atmosphere Probe","destination":"Venus","status":"Completed","launchDate":"2024-01-17","durationDays":110,"agency":"JAXA","country":"Japan"},
+    {"id":"AA-011","name":"Mars Sample Return","destination":"Mars","status":"Planned","launchDate":"2028-06-11","durationDays":760,"agency":"NASA","country":"USA"},
+    {"id":"AA-012","name":"Outer System Mapper","destination":"Saturn","status":"Active","launchDate":"2025-12-04","durationDays":1300,"agency":"ESA","country":"Germany"}
+  ]
+}
